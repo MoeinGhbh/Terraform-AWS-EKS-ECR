@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Greet</title>
+</head>
+<body>
+
+        <h1>{{ name }}!</h1>
+
+    <form id="postDataForm">
+        <label for="dataInput">Enter user:</label>
+        <input type="text" id="dataInput" name="dataInput">
+        <button type="button" onclick="postData()">Submit</button>
+    </form>
+
+    <script>
+        function postData() {
+            const inputData = document.getElementById('dataInput').value;
+
+            // Construct the payload
+            const data = {
+                input_data: inputData
+            };
+
+            // Send the POST request
+            fetch('/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok.');
+                }
+                return response.json();
+            })
+            .then(jsonResponse => {
+                // Handle the response
+                console.log(jsonResponse);
+                // Optionally, display a success message or perform other actions
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+                // Handle errors or display an error message
+            });
+        }
+    </script>
+
+
+</body>
+</html>

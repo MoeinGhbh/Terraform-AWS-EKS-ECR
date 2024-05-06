@@ -1,0 +1,18 @@
+variables:
+  docker_registery: 688530700484.dkr.ecr.eu-central-1.amazonaws.com
+  AWS_DEFAULT_REGION: eu-central-1
+  DOCKER_HOST: tcp://docker:2375
+publish:
+  image:
+    name: amazon/aws-cli
+    entrypoint: [""]
+  services:
+    - docker:dind
+  before_script:
+    - amazon-linux-extras install docker
+    - aws --version
+    - docker --version
+  script:
+    - docker build -t 688530700484.dkr.ecr.eu-central-1.amazonaws.com/greet_ecr_repository:latest .
+    - aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 688530700484.dkr.ecr.eu-central-1.amazonaws.com
+    - docker push 688530700484.dkr.ecr.eu-central-1.amazonaws.com/greet_ecr_repository:latest
