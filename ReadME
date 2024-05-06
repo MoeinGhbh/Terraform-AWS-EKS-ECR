@@ -1,0 +1,10 @@
+These have been implemented using Python along with the Flask web
+framework. Additionally, for data storage and retrieval, Redis has
+been utilized, and for applying the Post HTTP method, Postman has been
+used. Furthermore, a load balancer has been defined for the Kubernetes
+cluster.
+
+ While this setup is relatively straightforward, I have plans to
+develop advanced clips that incorporate additional microservices and
+leverage ReactJS for the Presentation layer. Additionally, I aim to
+host this Web project on AWS Amplify.
